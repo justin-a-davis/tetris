@@ -157,6 +157,7 @@ class GameScene extends Phaser.Scene {
                 this.staticBoard.merge(this.staticBoard, this.tetBoard);
                 this.currentTet = null
                 this.tetBoard.clear();
+                this.handleStaticBoard();
                 this.currentTet = this.tetBoard.spawnTetromino(this.pickRandomTet());
                 // Check for game over
                 if (this.staticBoard.boardIntersects(this.tetBoard)) {
@@ -169,6 +170,7 @@ class GameScene extends Phaser.Scene {
         }  else {
             this.staticBoard.merge(this.tetBoard, this.staticBoard);
             this.tetBoard.clear();
+            this.handleStaticBoard();
             this.currentTet = this.tetBoard.spawnTetromino(this.pickRandomTet());
             }
     }
@@ -201,7 +203,6 @@ class GameScene extends Phaser.Scene {
         if (this.time.now - this.lastStep > this.stepDelay) {
 
             this.handleCurrentTet();
-            this.handleStaticBoard();
 
             this.lastStep = this.time.now;
         }
